@@ -49,7 +49,7 @@ def build(lang):
     english = lang == 'en'
     local = lang in i18n.MODULES
     m = i18n.module(lang) if local else None
-    title = 'LyricWave Studio — Kinetic Lyrics & Motion Video Studio' if english else m.TITLE if local else 'LyricWave — Kinetic Lyrics'
+    title = 'LyricWave Studio — Step 2: Finishing Edit' if english else m.TITLE if local else 'LyricWave Studio — ステップ2：仕上げ編集'
     description = ('Create kinetic typography lyric videos in your browser and export MP4.' if english else m.DESCRIPTION if local else 'Trình tạo video lyric chuyển động chữ mượt mà')
     folder = dict((c, f) for c, f, _, _ in i18n.EDITIONS)[lang]
     canonical = i18n.BASE + (folder + '/' if folder else '')

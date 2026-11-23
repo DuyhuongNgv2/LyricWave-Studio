@@ -2491,7 +2491,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += '。音声が入らなかったため、音声を WAV で別に保存しました';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「曲を読み込む」から読み込み直してください）';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「ステップ1の曲を取り込む」から読み込み直してください）';
       else if (S.project.includeAudio === false) txt.textContent += '。音声なしで書き出しました';
     } else if (kind === 'mp4' || kind === 'mp4file') {
       const range = scopeAll ? null : exportRange(), span = J.exportSpan(S.plan, range);
@@ -2523,7 +2523,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += r.audio ? '。このブラウザでは音声が Opus になり、iPhone・QuickTime などでは音が出ないことがあるため、音声を WAV でも保存しました' : '。このブラウザは音声を書き出せないため、音声を WAV で別に保存しました（動画編集ソフトで重ねてください）';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「曲を読み込む」から読み込み直してください）';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「ステップ1の曲を取り込む」から読み込み直してください）';
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: proj, transparent: kind === 'pnga', layers: kind === 'pngl', onProgress, signal: ac.signal, range: exportRange() });
       txt.textContent = `完成 ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -3154,7 +3154,7 @@ async function applyTrack(i, opts) {
   } else {
     S.audio = null;
     $('audioName').textContent = (item.audioName || '') + '（曲が読み込まれていません）';
-    if (item.audioName) toast('曲が読み込まれていません — 「曲を読み込む」から読み込み直してください');
+    if (item.audioName) toast('曲が読み込まれていません — 「ステップ1の曲を取り込む」から読み込み直してください');
   }
   syncUI(); replan(); seek(0); renderPlaylist(); flushSave();
   if (opts.autoplay) play();
@@ -3356,7 +3356,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. 歌詞を入れる', text: '1行が1フレーズになります。空行で少し間が空き、[間奏 8] と書くと8秒の間奏（背景と装飾だけ）になります。' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 曲を読み込む', text: 'mp3 などを読み込むと拍を検出して、カットの切り替わりを合わせます。曲がなくても作れます。「タップで同期」で行の頭を合わせることもできます。' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. ステップ1の曲を取り込む', text: 'mp3 などを読み込むと拍を検出して、カットの切り替わりを合わせます。曲がなくても作れます。「タップで同期」で行の頭を合わせることもできます。' },
   { t: () => $('btnOmakaseBig'), title: '3. おまかせで作る', text: 'スタイル・雰囲気・動き・配色・構成をまるごと決めます。押すたびに別の案になり、「◀ 前の案」で戻れます。' },
   { t: () => $('btnPlay'), title: '4. 再生して確認する', text: '再生して見てみましょう。下のタイムラインでは、行の区切りをドラッグして動かせます（＋−で拡大）。' },
   { t: () => $('lineList'), title: '5. 気になる行だけ直す', text: '行ごとに、歌詞を直す（✎）、カット数を決める、この行からタップし直す（◎）、この行だけ作り直す（サイコロ）ができます。' },

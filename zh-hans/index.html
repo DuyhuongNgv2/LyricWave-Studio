@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LyricWave Studio — 歌词动态视频制作工具</title>
+<title>LyricWave Studio — 第2步：后期完善编辑</title>
 <meta name="description" content="在浏览器中把歌词做成动态歌词视频，并导出 MP4。">
 <link rel="canonical" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/zh-hans/">
 <link rel="alternate" hreflang="ja" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="ko" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="vi" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LyricWave Studio — 歌词动态视频制作工具">
+<meta property="og:title" content="LyricWave Studio — 第2步：后期完善编辑">
 <meta property="og:description" content="在浏览器中把歌词做成动态歌词视频，并导出 MP4。">
 <meta property="og:url" content="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/zh-hans/">
 <meta name="twitter:card" content="summary">
@@ -948,9 +948,9 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       <span class="logo" aria-hidden="true">Λ</span>
       <div class="brand-text">
         <span class="mark" aria-hidden="true">LyricWave</span>
-        <span class="word">MOTION LYRICS</span>
+        <span class="word">STEP 2 · MOTION LYRICS</span>
       </div>
-      <span class="ver">v0.37.0</span>
+      <span class="ver">v0.38.0</span>
     </div>
     <div class="proj">
       <input id="songTitle" type="text" placeholder="歌名（显示在标题卡和 HUD 上）" aria-label="歌名">
@@ -1015,10 +1015,10 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       </div>
 
       <div class="sec">
-        <div class="sec-h"><h2>音乐与时间</h2></div>
+        <div class="sec-h"><h2>导入第1步歌曲并同步</h2></div>
         <div id="audioName" class="muted audio-name">未载入音乐（载入后会检测节拍并对齐镜头）</div>
         <div class="row">
-          <label class="file" title="MP3、WAV、M4A 等">载入音乐<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+          <label class="file" title="MP3、WAV、M4A 等">导入第1步歌曲<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="边播放音乐边在每行开头轻点">轻点同步</button>
           <button id="btnWhisper" title="聆听音频对齐每行开始时间（在浏览器内运行）">Whisper 自动同步</button>
           <button id="btnAlign1Click" class="primary" title="聆听音频对齐每行时间，并打开确认界面">一键对齐歌词</button>
@@ -4871,7 +4871,7 @@ J.plan = (project, audio) => {
   const zoneOf = () => (zones ? Object.assign({}, zones[0]) : null);
   if (zones && en.bg) en.bg.bigChar = false;               // the one background that draws the lyric itself (big, centred)
   const plan = {
-    version: 1, generator: 'LyricWave', appVersion: '0.37.0', title, artist, W, H, fps: project.fps || 24,
+    version: 1, generator: 'LyricWave', appVersion: '0.38.0', title, artist, W, H, fps: project.fps || 24,
     duration: tm.duration, styleKey: project.style, style: st, fx, seed: project.seed,
     lines: [], cuts: [], events: [], beats: audio && audio.beats ? audio.beats.slice() : [],
     hud: fx.hud === 'on' ? true : fx.hud === 'off' ? false : !!st.hud,
@@ -43094,7 +43094,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += '。未录到音频，已另存为 WAV';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。未载入音乐，所以视频没有声音（请通过“载入音乐”重新载入）';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。未载入音乐，所以视频没有声音（请通过“导入第1步歌曲”重新载入）';
       else if (S.project.includeAudio === false) txt.textContent += '。已无声导出';
     } else if (kind === 'mp4' || kind === 'mp4file') {
       const range = scopeAll ? null : exportRange(), span = J.exportSpan(S.plan, range);
@@ -43126,7 +43126,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += r.audio ? '。此浏览器会把音频编码为 Opus，在 iPhone、QuickTime 等上可能没有声音，因此另存了一份 WAV 音频' : '。此浏览器无法导出音频，因此已将音频单独保存为 WAV（请在视频剪辑软件中合并）';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。未载入音乐，所以视频没有声音（请通过“载入音乐”重新载入）';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。未载入音乐，所以视频没有声音（请通过“导入第1步歌曲”重新载入）';
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: proj, transparent: kind === 'pnga', layers: kind === 'pngl', onProgress, signal: ac.signal, range: exportRange() });
       txt.textContent = `完成 ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -43635,7 +43635,7 @@ function bind() {
   const openTerms = () => { if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', ''); };
   document.querySelectorAll('.terms-open').forEach(b => b.addEventListener('click', openTerms));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });   // click on the backdrop
-  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.37.0' }), null, 1)); });
+  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.38.0' }), null, 1)); });
   $('btnAE').addEventListener('click', () => J.saveFile(baseName() + rangeSuffix() + '_ae.json', JSON.stringify(J.planForAE(S.plan, S.project, exportRange()), null, 1)));
   audioNameDefault = $('audioName').textContent;
   $('btnClearLyrics').addEventListener('click', clearLyrics);
@@ -43757,7 +43757,7 @@ async function applyTrack(i, opts) {
   } else {
     S.audio = null;
     $('audioName').textContent = (item.audioName || '') + '（未载入音乐）';
-    if (item.audioName) toast('尚未载入音乐 — 请通过“载入音乐”重新导入');
+    if (item.audioName) toast('尚未载入音乐 — 请通过“导入第1步歌曲”重新导入');
   }
   syncUI(); replan(); seek(0); renderPlaylist(); flushSave();
   if (opts.autoplay) play();
@@ -43959,7 +43959,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. 输入歌词', text: '1 行就是 1 句。空行会留出短暂停顿；写 [间奏 8] 则生成 8 秒的间奏（只有背景和装饰）。' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 载入音乐', text: '载入 mp3 等文件后会检测节拍，让镜头切换踩在拍子上。没有音乐也能制作。还可以用“轻点同步”对齐每行的开头。' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 导入第1步歌曲', text: '载入 mp3 等文件后会检测节拍，让镜头切换踩在拍子上。没有音乐也能制作。还可以用“轻点同步”对齐每行的开头。' },
   { t: () => $('btnOmakaseBig'), title: '3. 一键生成', text: '风格、氛围、动态、配色、编排一次全部决定。每按一次就换一个方案，按“◀ 上一个”可以返回。' },
   { t: () => $('btnPlay'), title: '4. 播放查看', text: '播放看看效果吧。在下方时间轴上可以拖动行分隔标记（＋−缩放）。' },
   { t: () => $('lineList'), title: '5. 只改不满意的行', text: '每一行都可以修改歌词（✎）、设定镜头数、从该行重新轻点（◎），或只重新生成这一行（骰子）。' },

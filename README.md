@@ -6,6 +6,8 @@
 
 Panel After Effects: [ScriptUI](LyricWave_AE.jsx) · [CEP](LyricWave_CEP.zip)
 
+> **Quy chuẩn 2 bước:** Bước 1 — Tạo nhạc (SONVIA / ACE-Step) · Bước 2 — Hoàn thiện Edit (LyricWave Studio này): nạp nhạc từ Bước 1, đồng bộ lời từng chữ, gắn hiệu ứng, xuất video. LyricWave không tạo nhạc.
+
 **LYRICWAVE STUDIO** là studio tạo video lyric chuyển động chữ (*Kinetic Typography / Kinetic Motion PV*) tự động chạy trực tiếp 100% trên trình duyệt web, không cần cài đặt phần mềm nặng, xuất file MP4 chất lượng cao lên đến 4K 60fps. Dự án sở hữu kho tàng **hơn 879 hiệu ứng chuyển động, 27 phong cách mỹ thuật, tích hợp trọn bộ hiệu ứng CapCut & Concat điện ảnh, kho Stock nền mẫu có sẵn, tải ảnh nền đa chuyển động** và nút thông minh **"Độc bản"** tự động biến hóa hiệu ứng không trùng lặp cho từng câu hát.
 
 **Phiên bản: v1.0.0 (Bản Tiếng Việt Toàn Diện & Chuẩn Điện Ảnh)**
@@ -98,7 +100,7 @@ Mỗi dòng văn bản tương ứng với một câu hát hiển thị. Bạn c
 ---
 
 ### 2. Âm thanh & Canh nhịp bài hát
-1. Bấm **"Tải nhạc lên"** để chọn tệp âm thanh (`mp3`, `wav`, `m4a`, `flac`). Hệ thống sẽ tự động phân tích và dò tìm nhịp **BPM** cùng các điểm rơi phách trống.
+1. Bấm **"Nạp nhạc Bước 1"** để chọn tệp âm thanh (nhạc đã tạo ở Bước 1 bên SONVIA / ACE-Step) (`mp3`, `wav`, `m4a`, `flac`). Hệ thống sẽ tự động phân tích và dò tìm nhịp **BPM** cùng các điểm rơi phách trống.
 2. **Đồng bộ bằng gõ nhịp (Tap-to-sync):** Bấm nút "Đồng bộ bằng gõ nhịp", bài hát sẽ phát và bạn chỉ cần nhấn phím **`Space`** ngay đầu mỗi câu hát khi ca sĩ cất giọng. Nhấn **`Tab`** nếu muốn đổi cảnh giữa dòng, hoặc **`Backspace`** để quay lại dòng trước.
 3. **Thanh Timeline:** Kéo thả các vạch phân chia đầu câu trên thước thời gian để tinh chỉnh khớp từng mili-giây.
 

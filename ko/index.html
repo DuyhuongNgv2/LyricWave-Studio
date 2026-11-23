@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LyricWave Studio — 가사 모션 영상 메이커</title>
+<title>LyricWave Studio — 2단계: 마무리 편집</title>
 <meta name="description" content="브라우저에서 가사를 움직이는 가사 영상으로 만들고 MP4로 내보내세요.">
 <link rel="canonical" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="ja" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="ko" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="vi" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LyricWave Studio — 가사 모션 영상 메이커">
+<meta property="og:title" content="LyricWave Studio — 2단계: 마무리 편집">
 <meta property="og:description" content="브라우저에서 가사를 움직이는 가사 영상으로 만들고 MP4로 내보내세요.">
 <meta property="og:url" content="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <meta name="twitter:card" content="summary">
@@ -948,9 +948,9 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       <span class="logo" aria-hidden="true">Λ</span>
       <div class="brand-text">
         <span class="mark" aria-hidden="true">LyricWave</span>
-        <span class="word">MOTION LYRICS</span>
+        <span class="word">STEP 2 · MOTION LYRICS</span>
       </div>
-      <span class="ver">v0.37.0</span>
+      <span class="ver">v0.38.0</span>
     </div>
     <div class="proj">
       <input id="songTitle" type="text" placeholder="곡 제목 (타이틀 카드와 HUD에 표시)" aria-label="곡 제목">
@@ -1015,10 +1015,10 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       </div>
 
       <div class="sec">
-        <div class="sec-h"><h2>음원과 타이밍</h2></div>
+        <div class="sec-h"><h2>1단계 곡 불러오기 & 동기화</h2></div>
         <div id="audioName" class="muted audio-name">음원 없음 (불러오면 박자를 감지해 컷을 맞춥니다)</div>
         <div class="row">
-          <label class="file" title="MP3 / WAV / M4A 등">음원 불러오기<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+          <label class="file" title="MP3 / WAV / M4A 등">1단계 곡 불러오기<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="음원을 재생하며 각 줄이 시작될 때 탭">탭으로 동기화</button>
           <button id="btnWhisper" title="오디오를 듣고 각 줄의 시작을 맞춥니다(브라우저 내 실행)">Whisper 자동 동기화</button>
           <button id="btnAlign1Click" class="primary" title="오디오를 듣고 각 줄 타이밍을 맞춘 뒤 확인 화면을 엽니다">원클릭 가사 맞추기</button>
@@ -4871,7 +4871,7 @@ J.plan = (project, audio) => {
   const zoneOf = () => (zones ? Object.assign({}, zones[0]) : null);
   if (zones && en.bg) en.bg.bigChar = false;               // the one background that draws the lyric itself (big, centred)
   const plan = {
-    version: 1, generator: 'LyricWave', appVersion: '0.37.0', title, artist, W, H, fps: project.fps || 24,
+    version: 1, generator: 'LyricWave', appVersion: '0.38.0', title, artist, W, H, fps: project.fps || 24,
     duration: tm.duration, styleKey: project.style, style: st, fx, seed: project.seed,
     lines: [], cuts: [], events: [], beats: audio && audio.beats ? audio.beats.slice() : [],
     hud: fx.hud === 'on' ? true : fx.hud === 'off' ? false : !!st.hud,
@@ -43177,7 +43177,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += '. 오디오가 녹음되지 않아 WAV로 따로 저장했습니다';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. 음원을 불러오지 않아 소리가 없습니다(‘음원 불러오기’로 다시 불러오세요)';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. 음원을 불러오지 않아 소리가 없습니다(‘1단계 곡 불러오기’로 다시 불러오세요)';
       else if (S.project.includeAudio === false) txt.textContent += '. 오디오 없이 내보냈습니다';
     } else if (kind === 'mp4' || kind === 'mp4file') {
       const range = scopeAll ? null : exportRange(), span = J.exportSpan(S.plan, range);
@@ -43209,7 +43209,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += r.audio ? '. 이 브라우저에서는 오디오가 Opus가 되어 iPhone·QuickTime 등에서 소리가 나지 않을 수 있으므로, 오디오를 WAV로도 저장했습니다' : '. 이 브라우저는 오디오를 내보낼 수 없어 오디오를 WAV로 따로 저장했습니다(영상 편집 프로그램에서 합쳐 주세요)';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. 음원을 불러오지 않아 소리가 없습니다(‘음원 불러오기’로 다시 불러오세요)';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. 음원을 불러오지 않아 소리가 없습니다(‘1단계 곡 불러오기’로 다시 불러오세요)';
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: proj, transparent: kind === 'pnga', layers: kind === 'pngl', onProgress, signal: ac.signal, range: exportRange() });
       txt.textContent = `완료 ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -43718,7 +43718,7 @@ function bind() {
   const openTerms = () => { if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', ''); };
   document.querySelectorAll('.terms-open').forEach(b => b.addEventListener('click', openTerms));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });   // click on the backdrop
-  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.37.0' }), null, 1)); });
+  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.38.0' }), null, 1)); });
   $('btnAE').addEventListener('click', () => J.saveFile(baseName() + rangeSuffix() + '_ae.json', JSON.stringify(J.planForAE(S.plan, S.project, exportRange()), null, 1)));
   audioNameDefault = $('audioName').textContent;
   $('btnClearLyrics').addEventListener('click', clearLyrics);
@@ -43840,7 +43840,7 @@ async function applyTrack(i, opts) {
   } else {
     S.audio = null;
     $('audioName').textContent = (item.audioName || '') + '(음원 미로드)';
-    if (item.audioName) toast('음원이 불러와지지 않았습니다 — ‘음원 불러오기’로 다시 불러오세요');
+    if (item.audioName) toast('음원이 불러와지지 않았습니다 — ‘1단계 곡 불러오기’로 다시 불러오세요');
   }
   syncUI(); replan(); seek(0); renderPlaylist(); flushSave();
   if (opts.autoplay) play();
@@ -44042,7 +44042,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. 가사 입력', text: '1줄이 1프레이즈가 됩니다. 빈 줄은 잠깐 쉬어 가고, [간주 8]이라고 쓰면 8초 간주(배경과 장식만)가 됩니다.' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 음원 불러오기', text: 'mp3 등을 불러오면 비트를 감지해 컷 전환을 맞춥니다. 음원이 없어도 만들 수 있습니다. ‘탭으로 싱크’로 각 줄의 시작을 맞출 수도 있습니다.' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 1단계 곡 불러오기', text: 'mp3 등을 불러오면 비트를 감지해 컷 전환을 맞춥니다. 음원이 없어도 만들 수 있습니다. ‘탭으로 싱크’로 각 줄의 시작을 맞출 수도 있습니다.' },
   { t: () => $('btnOmakaseBig'), title: '3. 자동으로 만들기', text: '스타일·분위기·움직임·배색·구성을 한 번에 정합니다. 누를 때마다 다른 안이 나오고, ‘◀ 이전’으로 돌아갈 수 있습니다.' },
   { t: () => $('btnPlay'), title: '4. 재생해서 확인하기', text: '재생해서 확인해 보세요. 아래 타임라인에서는 줄 구분을 드래그해서 옮길 수 있습니다(＋−로 확대/축소).' },
   { t: () => $('lineList'), title: '5. 마음에 걸리는 줄만 고치기', text: '줄마다 가사 고치기(✎), 컷 수 정하기, 이 줄부터 탭 다시 하기(◎), 이 줄만 다시 만들기(주사위)를 할 수 있습니다.' },

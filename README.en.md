@@ -1,4 +1,6 @@
-# LyricWave Studio — Lyric Motion Video Maker
+# LyricWave Studio — Step 2: Finishing Edit (Lyric Motion Video Maker)
+
+> **Two-step standard:** Step 1 — Create music (SONVIA / ACE-Step) · Step 2 — Finishing Edit (this LyricWave Studio): import the Step 1 song, sync lyrics word by word, add effects, export video. LyricWave does not create music.
 
 Turn lyrics into animated lyric videos in your browser. LyricWave Studio combines layouts, entrances, holds, exits, decorations, text treatments, backgrounds, camera moves, effects and transitions. Change the seed or press **Create a variation** to explore another arrangement.
 

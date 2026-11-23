@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LyricWave Studio — Trình tạo video lời bài hát chữ nhảy (Kinetic Typography)</title>
+<title>LyricWave Studio — Bước 2: Hoàn thiện Edit</title>
 <meta name="description" content="Tạo video lời bài hát chữ nhảy (kinetic typography lyric video) mượt mà trong trình duyệt, hỗ trợ tiếng Việt có dấu 100%, rồi xuất MP4.">
 <link rel="canonical" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <link rel="alternate" hreflang="ja" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="ko" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="vi" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LyricWave Studio — Trình tạo video lời bài hát chữ nhảy (Kinetic Typography)">
+<meta property="og:title" content="LyricWave Studio — Bước 2: Hoàn thiện Edit">
 <meta property="og:description" content="Tạo video lời bài hát chữ nhảy (kinetic typography lyric video) mượt mà trong trình duyệt, hỗ trợ tiếng Việt có dấu 100%, rồi xuất MP4.">
 <meta property="og:url" content="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta name="twitter:card" content="summary">
@@ -948,9 +948,9 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       <span class="logo" aria-hidden="true">Λ</span>
       <div class="brand-text">
         <span class="mark" aria-hidden="true">LyricWave</span>
-        <span class="word">MOTION LYRICS</span>
+        <span class="word">STEP 2 · MOTION LYRICS</span>
       </div>
-      <span class="ver">v0.37.0</span>
+      <span class="ver">v0.38.0</span>
     </div>
     <div class="proj">
       <input id="songTitle" type="text" placeholder="Tên bài hát (hiển thị trên tiêu đề và HUD)" aria-label="Tên bài hát">
@@ -1015,10 +1015,10 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       </div>
 
       <div class="sec">
-        <div class="sec-h"><h2>Âm thanh và thời gian</h2></div>
+        <div class="sec-h"><h2>Nạp nhạc từ Bước 1 & đồng bộ</h2></div>
         <div id="audioName" class="muted audio-name">Không có âm thanh. Chọn một tệp để phát hiện nhịp và điều chỉnh các đoạn chuyển cảnh.</div>
         <div class="row">
-          <label class="file" title="MP3, WAV, M4A, v.v...">Chọn tệp<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+          <label class="file" title="MP3, WAV, M4A, v.v...">Nạp nhạc Bước 1<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="Nhấn vào đầu mỗi dòng trong khi bài hát đang phát">Đặt điểm chuyển cảnh</button>
           <button id="btnWhisper" title="Nghe audio để căn thời điểm bắt đầu từng dòng (chạy trong trình duyệt)">Whisper tự căn lời</button>
           <button id="btnAlign1Click" class="primary" title="Nghe audio để căn thời gian từng dòng và mở màn kiểm tra">Căn lời 1-Click</button>
@@ -4871,7 +4871,7 @@ J.plan = (project, audio) => {
   const zoneOf = () => (zones ? Object.assign({}, zones[0]) : null);
   if (zones && en.bg) en.bg.bigChar = false;               // the one background that draws the lyric itself (big, centred)
   const plan = {
-    version: 1, generator: 'LyricWave', appVersion: '0.37.0', title, artist, W, H, fps: project.fps || 24,
+    version: 1, generator: 'LyricWave', appVersion: '0.38.0', title, artist, W, H, fps: project.fps || 24,
     duration: tm.duration, styleKey: project.style, style: st, fx, seed: project.seed,
     lines: [], cuts: [], events: [], beats: audio && audio.beats ? audio.beats.slice() : [],
     hud: fx.hud === 'on' ? true : fx.hud === 'off' ? false : !!st.hud,
@@ -42934,7 +42934,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += '. Không có tiếng trong file nên đã lưu riêng tiếng dưới dạng WAV';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. Không có bài hát nào được tải nên video không có âm thanh (tải lại qua “Chọn tệp”)';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. Không có bài hát nào được tải nên video không có âm thanh (tải lại qua “Nạp nhạc Bước 1”)';
       else if (S.project.includeAudio === false) txt.textContent += '. Đã xuất không có tiếng';
     } else if (kind === 'mp4' || kind === 'mp4file') {
       const range = scopeAll ? null : exportRange(), span = J.exportSpan(S.plan, range);
@@ -42966,7 +42966,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += r.audio ? '. Trình duyệt này lưu âm thanh ở định dạng Opus, định dạng này có thể không phát trên iPhone, QuickTime hoặc một số trình phát nhất định. Vì vậy, âm thanh cũng được lưu dưới dạng WAV' : '. Trình duyệt này không thể mã hóa âm thanh nên âm thanh được lưu riêng dưới dạng WAV (hợp nhất trong trình chỉnh sửa video)';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. Không có bài hát nào được tải nên video không có âm thanh (tải lại qua “Chọn tệp”)';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. Không có bài hát nào được tải nên video không có âm thanh (tải lại qua “Nạp nhạc Bước 1”)';
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: proj, transparent: kind === 'pnga', layers: kind === 'pngl', onProgress, signal: ac.signal, range: exportRange() });
       txt.textContent = `Hoàn thành:${(blob.size / 1048576).toFixed(1)}MB`;
@@ -43475,7 +43475,7 @@ function bind() {
   const openTerms = () => { if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', ''); };
   document.querySelectorAll('.terms-open').forEach(b => b.addEventListener('click', openTerms));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });   // click on the backdrop
-  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.37.0' }), null, 1)); });
+  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.38.0' }), null, 1)); });
   $('btnAE').addEventListener('click', () => J.saveFile(baseName() + rangeSuffix() + '_ae.json', JSON.stringify(J.planForAE(S.plan, S.project, exportRange()), null, 1)));
   audioNameDefault = $('audioName').textContent;
   $('btnClearLyrics').addEventListener('click', clearLyrics);
@@ -43597,7 +43597,7 @@ async function applyTrack(i, opts) {
   } else {
     S.audio = null;
     $('audioName').textContent = (item.audioName || '') + '(chưa nạp bài hát)';
-    if (item.audioName) toast('Chưa nạp bài hát — hãy nạp lại từ "Nạp bài hát"');
+    if (item.audioName) toast('Chưa nạp bài hát — hãy nạp lại từ "Nạp nhạc Bước 1"');
   }
   syncUI(); replan(); seek(0); renderPlaylist(); flushSave();
   if (opts.autoplay) play();
@@ -43799,7 +43799,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. Nhập lời bài hát', text: 'Mỗi dòng là một câu. Dòng trống tạo khoảng dừng ngắn; [interlude 8] sẽ tạo đoạn nhạc nền 8 giây (chỉ hình nền và hiệu ứng).' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. Chọn tệp âm thanh', text: 'Chọn tệp mp3 hoặc tệp tương tự: LyricWave nhận diện nhịp và căn chỉnh chuyển cảnh. Có thể làm không cần bài hát. “Đặt điểm chuyển cảnh” để đánh dấu bắt đầu của mỗi câu.' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. Nạp nhạc Bước 1 — thanh', text: 'Nạp nhạc Bước 1 (mp3 hoặc tệp tương tự: LyricWave nhận diện nhịp và căn chỉnh chuyển cảnh. Có thể làm không cần bài hát. “Đặt điểm chuyển cảnh” để đánh dấu bắt đầu của mỗi câu.' },
   { t: () => $('btnOmakaseBig'), title: '3. Tạo ngẫu nhiên', text: 'Phong cách, bầu không khí, chuyển động, bảng màu và bố cục được chọn tự động. Mỗi lần bấm tạo biến thể mới; “◀ Biến thể trước” để quay lại.' },
   { t: () => $('btnPlay'), title: '4. Phát thử', text: 'Phát để xem trước. Trên dòng thời gian phía dưới, kéo thanh neo để chỉnh (＋− để phóng to).' },
   { t: () => $('lineList'), title: '5. Sửa từng câu', text: 'Mỗi câu: sửa lời (✎), đặt vị trí chuyển cảnh, đặt lại vị trí chuyển cảnh cho câu này (◎), hoặc tạo lại cho riêng câu này (ngẫu nhiên).' },

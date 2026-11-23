@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LyricWave Studio — Kinetic Lyrics & Motion Video Studio</title>
+<title>LyricWave Studio — Step 2: Finishing Edit</title>
 <meta name="description" content="Create kinetic typography lyric videos in your browser and export MP4.">
 <link rel="canonical" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/en/">
 <link rel="alternate" hreflang="ja" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="ko" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="vi" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LyricWave Studio — Kinetic Lyrics & Motion Video Studio">
+<meta property="og:title" content="LyricWave Studio — Step 2: Finishing Edit">
 <meta property="og:description" content="Create kinetic typography lyric videos in your browser and export MP4.">
 <meta property="og:url" content="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/en/">
 <meta name="twitter:card" content="summary">
@@ -948,9 +948,9 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       <span class="logo" aria-hidden="true">Λ</span>
       <div class="brand-text">
         <span class="mark" aria-hidden="true">LyricWave</span>
-        <span class="word">MOTION LYRICS</span>
+        <span class="word">STEP 2 · MOTION LYRICS</span>
       </div>
-      <span class="ver">v0.37.0</span>
+      <span class="ver">v0.38.0</span>
     </div>
     <div class="proj">
       <input id="songTitle" type="text" placeholder="Song title (shown on title cards and HUD)" aria-label="Song title">
@@ -1015,10 +1015,10 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       </div>
 
       <div class="sec">
-        <div class="sec-h"><h2>Audio and timing</h2></div>
+        <div class="sec-h"><h2>Import Step 1 song & sync</h2></div>
         <div id="audioName" class="muted audio-name">No audio. Import a song to detect beats and align cuts.</div>
         <div class="row">
-          <label class="file" title="MP3, WAV, M4A and more">Import audio<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+          <label class="file" title="MP3, WAV, M4A and more">Import Step 1 song<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="Tap at the start of each line while the song plays">Tap to sync</button>
           <button id="btnWhisper" title="Listen to the audio and align each line start (runs in your browser)">Auto-align with Whisper</button>
           <button id="btnAlign1Click" class="primary" title="Listen to the audio, align each line and open the review dialog">Align lyrics 1-Click</button>
@@ -4871,7 +4871,7 @@ J.plan = (project, audio) => {
   const zoneOf = () => (zones ? Object.assign({}, zones[0]) : null);
   if (zones && en.bg) en.bg.bigChar = false;               // the one background that draws the lyric itself (big, centred)
   const plan = {
-    version: 1, generator: 'LyricWave', appVersion: '0.37.0', title, artist, W, H, fps: project.fps || 24,
+    version: 1, generator: 'LyricWave', appVersion: '0.38.0', title, artist, W, H, fps: project.fps || 24,
     duration: tm.duration, styleKey: project.style, style: st, fx, seed: project.seed,
     lines: [], cuts: [], events: [], beats: audio && audio.beats ? audio.beats.slice() : [],
     hud: fx.hud === 'on' ? true : fx.hud === 'off' ? false : !!st.hud,
@@ -42898,7 +42898,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += '. No audio was recorded, so the soundtrack was saved separately as WAV';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. No song is loaded, so the video has no audio (load the song again with “Load song”)';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. No song is loaded, so the video has no audio (load the song again with “Import Step 1 song”)';
       else if (S.project.includeAudio === false) txt.textContent += '. Exported without audio';
     } else if (kind === 'mp4' || kind === 'mp4file') {
       const range = scopeAll ? null : exportRange(), span = J.exportSpan(S.plan, range);
@@ -42930,7 +42930,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += r.audio ? '. This browser encodes audio as Opus, which iPhone, QuickTime and some players cannot play, so the audio was also saved as WAV' : '. This browser cannot encode audio, so the audio was saved separately as WAV (combine it in a video editor)';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. No song is loaded, so the video has no audio (load the song again with “Load song”)';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '. No song is loaded, so the video has no audio (load the song again with “Import Step 1 song”)';
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: proj, transparent: kind === 'pnga', layers: kind === 'pngl', onProgress, signal: ac.signal, range: exportRange() });
       txt.textContent = `Done: ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -43439,7 +43439,7 @@ function bind() {
   const openTerms = () => { if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', ''); };
   document.querySelectorAll('.terms-open').forEach(b => b.addEventListener('click', openTerms));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });   // click on the backdrop
-  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.37.0' }), null, 1)); });
+  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.38.0' }), null, 1)); });
   $('btnAE').addEventListener('click', () => J.saveFile(baseName() + rangeSuffix() + '_ae.json', JSON.stringify(J.planForAE(S.plan, S.project, exportRange()), null, 1)));
   audioNameDefault = $('audioName').textContent;
   $('btnClearLyrics').addEventListener('click', clearLyrics);
@@ -43561,7 +43561,7 @@ async function applyTrack(i, opts) {
   } else {
     S.audio = null;
     $('audioName').textContent = (item.audioName || '') + '(song not loaded)';
-    if (item.audioName) toast('The song is not loaded — load it again from "Load song"');
+    if (item.audioName) toast('The song is not loaded — load it again from "Import Step 1 song"');
   }
   syncUI(); replan(); seek(0); renderPlaylist(); flushSave();
   if (opts.autoplay) play();
@@ -43763,7 +43763,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. Enter lyrics', text: 'One line is one phrase. A blank line adds a short pause; [interlude 8] makes an 8-second instrumental part (background and decorations only).' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. Load the song', text: 'Load an mp3 or similar file: LyricWave finds the beats and times the cuts to them. It also works without a song. “Tap to sync” lets you mark where each line starts.' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. Import the Step 1 song', text: 'Load an mp3 or similar file: LyricWave finds the beats and times the cuts to them. It also works without a song. “Tap to sync” lets you mark where each line starts.' },
   { t: () => $('btnOmakaseBig'), title: '3. Create a variation', text: 'Style, mood, motion, palette and arrangement are chosen for you. Each press makes a new variation; “◀ Previous” goes back.' },
   { t: () => $('btnPlay'), title: '4. Play it', text: 'Play it back. On the timeline below you can drag the line markers (+ and − zoom).' },
   { t: () => $('lineList'), title: '5. Fix single lines', text: 'For each line you can edit the lyrics (✎), set the number of cuts, redo tap sync from that line (◎) or reroll just that line (dice).' },

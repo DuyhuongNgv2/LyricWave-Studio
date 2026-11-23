@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LyricWave Studio — 動態歌詞影片製作工具</title>
+<title>LyricWave Studio — 第2步：後期完善編輯</title>
 <meta name="description" content="在瀏覽器中把歌詞做成動態歌詞影片，並匯出 MP4。">
 <link rel="canonical" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/zh-hant/">
 <link rel="alternate" hreflang="ja" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="ko" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="vi" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LyricWave Studio — 動態歌詞影片製作工具">
+<meta property="og:title" content="LyricWave Studio — 第2步：後期完善編輯">
 <meta property="og:description" content="在瀏覽器中把歌詞做成動態歌詞影片，並匯出 MP4。">
 <meta property="og:url" content="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/zh-hant/">
 <meta name="twitter:card" content="summary">
@@ -948,9 +948,9 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       <span class="logo" aria-hidden="true">Λ</span>
       <div class="brand-text">
         <span class="mark" aria-hidden="true">LyricWave</span>
-        <span class="word">MOTION LYRICS</span>
+        <span class="word">STEP 2 · MOTION LYRICS</span>
       </div>
-      <span class="ver">v0.37.0</span>
+      <span class="ver">v0.38.0</span>
     </div>
     <div class="proj">
       <input id="songTitle" type="text" placeholder="歌名（顯示在標題卡與 HUD）" aria-label="歌名">
@@ -1015,10 +1015,10 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       </div>
 
       <div class="sec">
-        <div class="sec-h"><h2>歌曲與時間軸</h2></div>
+        <div class="sec-h"><h2>匯入第1步歌曲並同步</h2></div>
         <div id="audioName" class="muted audio-name">尚未匯入歌曲（匯入後會偵測節拍並對齊片段）</div>
         <div class="row">
-          <label class="file" title="mp3 / wav / m4a 等格式">匯入歌曲<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+          <label class="file" title="mp3 / wav / m4a 等格式">匯入第1步歌曲<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="播放歌曲時，在每一行開頭點一下">點擊對拍</button>
           <button id="btnWhisper" title="聆聽音訊對齊每行開始時間（在瀏覽器內執行）">Whisper 自動同步</button>
           <button id="btnAlign1Click" class="primary" title="聆聽音訊對齊每行時間，並開啟確認畫面">一鍵對齊歌詞</button>
@@ -4871,7 +4871,7 @@ J.plan = (project, audio) => {
   const zoneOf = () => (zones ? Object.assign({}, zones[0]) : null);
   if (zones && en.bg) en.bg.bigChar = false;               // the one background that draws the lyric itself (big, centred)
   const plan = {
-    version: 1, generator: 'LyricWave', appVersion: '0.37.0', title, artist, W, H, fps: project.fps || 24,
+    version: 1, generator: 'LyricWave', appVersion: '0.38.0', title, artist, W, H, fps: project.fps || 24,
     duration: tm.duration, styleKey: project.style, style: st, fx, seed: project.seed,
     lines: [], cuts: [], events: [], beats: audio && audio.beats ? audio.beats.slice() : [],
     hud: fx.hud === 'on' ? true : fx.hud === 'off' ? false : !!st.hud,
@@ -43666,7 +43666,7 @@ function bind() {
   const openTerms = () => { if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', ''); };
   document.querySelectorAll('.terms-open').forEach(b => b.addEventListener('click', openTerms));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });   // click on the backdrop
-  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.37.0' }), null, 1)); });
+  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.38.0' }), null, 1)); });
   $('btnAE').addEventListener('click', () => J.saveFile(baseName() + rangeSuffix() + '_ae.json', JSON.stringify(J.planForAE(S.plan, S.project, exportRange()), null, 1)));
   audioNameDefault = $('audioName').textContent;
   $('btnClearLyrics').addEventListener('click', clearLyrics);
@@ -43990,7 +43990,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. 輸入歌詞', text: '1 行就是 1 個樂句。空行會留一點間隔；寫成 [間奏 8] 就是 8 秒的間奏（只有背景與裝飾）。' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 匯入歌曲', text: '載入 mp3 等檔案後會偵測節拍，讓片段切換對齊節拍。沒有歌曲也能製作。也可以用「點擊對拍」對齊每行的開頭。' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 匯入第1步歌曲', text: '載入 mp3 等檔案後會偵測節拍，讓片段切換對齊節拍。沒有歌曲也能製作。也可以用「點擊對拍」對齊每行的開頭。' },
   { t: () => $('btnOmakaseBig'), title: '3. 隨機生成一版', text: '風格、氛圍、動態、配色與編排會一次全部決定。每按一次就是不同的方案，按「◀ 上一個方案」可以返回。' },
   { t: () => $('btnPlay'), title: '4. 播放確認', text: '播放看看吧。在下方的時間軸上，可以拖曳行的分隔來移動（＋−縮放）。' },
   { t: () => $('lineList'), title: '5. 只修改在意的行', text: '每一行都可以修改歌詞（✎）、設定片段數、從這一行重新點擊對拍（◎），或只重做這一行（骰子）。' },

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LyricWave — Kinetic Lyrics</title>
+<title>LyricWave Studio — ステップ2：仕上げ編集</title>
 <meta name="description" content="Trình tạo video lyric chuyển động chữ mượt mà">
 <link rel="canonical" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
 <link rel="alternate" hreflang="ja" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="ko" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ko/">
 <link rel="alternate" hreflang="vi" href="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LyricWave — Kinetic Lyrics">
+<meta property="og:title" content="LyricWave Studio — ステップ2：仕上げ編集">
 <meta property="og:description" content="Trình tạo video lyric chuyển động chữ mượt mà">
 <meta property="og:url" content="https://DuyhuongNgv2.github.io/AURA-STUDIO-Lyrics/ja/">
 <meta name="twitter:card" content="summary">
@@ -948,9 +948,9 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       <span class="logo" aria-hidden="true">Λ</span>
       <div class="brand-text">
         <span class="mark" aria-hidden="true">LyricWave</span>
-        <span class="word">MOTION LYRICS</span>
+        <span class="word">STEP 2 · MOTION LYRICS</span>
       </div>
-      <span class="ver">v0.37.0</span>
+      <span class="ver">v0.38.0</span>
     </div>
     <div class="proj">
       <input id="songTitle" type="text" placeholder="曲名（タイトルカード・HUDに表示）" aria-label="曲名">
@@ -1015,10 +1015,10 @@ html[lang=vi] { --ui: 'Be Vietnam Pro','Noto Sans',Arial,sans-serif; --mono: 'Be
       </div>
 
       <div class="sec">
-        <div class="sec-h"><h2>曲とタイミング</h2></div>
+        <div class="sec-h"><h2>ステップ1の曲を取り込み＆同期</h2></div>
         <div id="audioName" class="muted audio-name">曲なし（読み込むと拍を検出してカットを合わせます）</div>
         <div class="row">
-          <label class="file" title="mp3 / wav / m4a など">曲を読み込む<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+          <label class="file" title="mp3 / wav / m4a など">ステップ1の曲を取り込む<input id="audioFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
           <button id="btnTap" title="曲を再生しながら各行の頭でタップ">タップで同期</button>
           <button id="btnWhisper" title="音声を聴いて各行の開始を合わせる（ブラウザ内で実行）">Whisperで自動同期</button>
           <button id="btnAlign1Click" class="primary" title="音声を聴いて各行のタイミングを合わせ、確認画面を開きます">歌詞を1クリックで合わせる</button>
@@ -4871,7 +4871,7 @@ J.plan = (project, audio) => {
   const zoneOf = () => (zones ? Object.assign({}, zones[0]) : null);
   if (zones && en.bg) en.bg.bigChar = false;               // the one background that draws the lyric itself (big, centred)
   const plan = {
-    version: 1, generator: 'LyricWave', appVersion: '0.37.0', title, artist, W, H, fps: project.fps || 24,
+    version: 1, generator: 'LyricWave', appVersion: '0.38.0', title, artist, W, H, fps: project.fps || 24,
     duration: tm.duration, styleKey: project.style, style: st, fx, seed: project.seed,
     lines: [], cuts: [], events: [], beats: audio && audio.beats ? audio.beats.slice() : [],
     hud: fx.hud === 'on' ? true : fx.hud === 'off' ? false : !!st.hud,
@@ -42601,7 +42601,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += '。音声が入らなかったため、音声を WAV で別に保存しました';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「曲を読み込む」から読み込み直してください）';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「ステップ1の曲を取り込む」から読み込み直してください）';
       else if (S.project.includeAudio === false) txt.textContent += '。音声なしで書き出しました';
     } else if (kind === 'mp4' || kind === 'mp4file') {
       const range = scopeAll ? null : exportRange(), span = J.exportSpan(S.plan, range);
@@ -42633,7 +42633,7 @@ async function runExport(kind) {
           await J.saveFile(baseName() + rangeSuffix() + '_audio.wav', J.audioWav(S.audio.buffer, span.dur, span.t0));
         }
         txt.textContent += r.audio ? '。このブラウザでは音声が Opus になり、iPhone・QuickTime などでは音が出ないことがあるため、音声を WAV でも保存しました' : '。このブラウザは音声を書き出せないため、音声を WAV で別に保存しました（動画編集ソフトで重ねてください）';
-      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「曲を読み込む」から読み込み直してください）';
+      } else if (S.project.includeAudio !== false && !S.audio && S.project.audioName) txt.textContent += '。曲が読み込まれていないため音声なしです（「ステップ1の曲を取り込む」から読み込み直してください）';
     } else {
       const blob = await J.exportPNGZip({ plan: S.plan, project: proj, transparent: kind === 'pnga', layers: kind === 'pngl', onProgress, signal: ac.signal, range: exportRange() });
       txt.textContent = `完成 ${(blob.size / 1048576).toFixed(1)}MB`;
@@ -43142,7 +43142,7 @@ function bind() {
   const openTerms = () => { if (dlg.showModal) { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', ''); };
   document.querySelectorAll('.terms-open').forEach(b => b.addEventListener('click', openTerms));
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close ? dlg.close() : dlg.removeAttribute('open'); });   // click on the backdrop
-  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.37.0' }), null, 1)); });
+  $('btnSave').addEventListener('click', () => { snapshotCurrentItem(); J.saveFile(baseName() + '.lyricwave.json', JSON.stringify(Object.assign({}, S.project, { appVersion: '0.38.0' }), null, 1)); });
   $('btnAE').addEventListener('click', () => J.saveFile(baseName() + rangeSuffix() + '_ae.json', JSON.stringify(J.planForAE(S.plan, S.project, exportRange()), null, 1)));
   audioNameDefault = $('audioName').textContent;
   $('btnClearLyrics').addEventListener('click', clearLyrics);
@@ -43264,7 +43264,7 @@ async function applyTrack(i, opts) {
   } else {
     S.audio = null;
     $('audioName').textContent = (item.audioName || '') + '（曲が読み込まれていません）';
-    if (item.audioName) toast('曲が読み込まれていません — 「曲を読み込む」から読み込み直してください');
+    if (item.audioName) toast('曲が読み込まれていません — 「ステップ1の曲を取り込む」から読み込み直してください');
   }
   syncUI(); replan(); seek(0); renderPlaylist(); flushSave();
   if (opts.autoplay) play();
@@ -43466,7 +43466,7 @@ async function loadAudioFile(f, restored) {
 /* ---------------- かんたんモードの案内ツアー ---------------- */
 const TOUR = [
   { t: () => $('lyrics'), title: '1. 歌詞を入れる', text: '1行が1フレーズになります。空行で少し間が空き、[間奏 8] と書くと8秒の間奏（背景と装飾だけ）になります。' },
-  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. 曲を読み込む', text: 'mp3 などを読み込むと拍を検出して、カットの切り替わりを合わせます。曲がなくても作れます。「タップで同期」で行の頭を合わせることもできます。' },
+  { t: () => $('audioFile').closest('label') || $('audioFile'), title: '2. ステップ1の曲を取り込む', text: 'mp3 などを読み込むと拍を検出して、カットの切り替わりを合わせます。曲がなくても作れます。「タップで同期」で行の頭を合わせることもできます。' },
   { t: () => $('btnOmakaseBig'), title: '3. おまかせで作る', text: 'スタイル・雰囲気・動き・配色・構成をまるごと決めます。押すたびに別の案になり、「◀ 前の案」で戻れます。' },
   { t: () => $('btnPlay'), title: '4. 再生して確認する', text: '再生して見てみましょう。下のタイムラインでは、行の区切りをドラッグして動かせます（＋−で拡大）。' },
   { t: () => $('lineList'), title: '5. 気になる行だけ直す', text: '行ごとに、歌詞を直す（✎）、カット数を決める、この行からタップし直す（◎）、この行だけ作り直す（サイコロ）ができます。' },

@@ -1,6 +1,8 @@
 # LyricWave Studio — Kinetic Lyrics & Typography Studio
 
 > **Trình tạo video lời bài hát chữ nhảy (Kinetic Typography) chạy trực tiếp trên trình duyệt web, hỗ trợ 100% font tiếng Việt không vỡ dấu.**
+>
+> **Quy chuẩn 2 bước:** Bước 1 — Tạo nhạc (SONVIA / ACE-Step) · Bước 2 — Hoàn thiện Edit (LyricWave Studio này). LyricWave không tạo nhạc; nó nạp nhạc từ Bước 1 để hoàn thiện video lời chữ.
 
 [![Bilingual EN/VI](https://img.shields.io/badge/Language-Ti%E1%BA%BFng%20Vi%E1%BB%87t%20%7C%20English-blue.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)

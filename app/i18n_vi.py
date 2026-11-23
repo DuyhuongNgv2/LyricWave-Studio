@@ -1,6 +1,6 @@
 """Vietnamese UI copy; format names, font names and project IDs are retained."""
 
-TITLE = 'LyricWave Studio — Trình tạo video lời bài hát chữ nhảy (Kinetic Typography)'
+TITLE = 'LyricWave Studio — Bước 2: Hoàn thiện Edit'
 
 DESCRIPTION = 'Tạo video lời bài hát chữ nhảy (kinetic typography lyric video) mượt mà trong trình duyệt, hỗ trợ tiếng Việt có dấu 100%, rồi xuất MP4.'
 
@@ -512,10 +512,10 @@ BODY = {'kinetic typography studio': 'trình tạo video chữ nhảy',
  '透明': 'nhấn mạnh',
  '歌詞|ruby or note': 'lời bài hát|ghi chú',
  '歌詞': 'Lời bài hát',
- '曲とタイミング': 'Âm thanh và thời gian',
+ 'ステップ1の曲を取り込み＆同期': 'Nạp nhạc từ Bước 1 & đồng bộ',
  '曲なし（読み込むと拍を検出してカットを合わせます）': 'Không có âm thanh. Chọn một tệp để phát hiện nhịp và điều chỉnh các đoạn chuyển cảnh.',
  'mp3 / wav / m4a など': 'MP3, WAV, M4A, v.v...',
- '曲を読み込む': 'Chọn tệp',
+ 'ステップ1の曲を取り込む': 'Nạp nhạc Bước 1',
  '曲を再生しながら各行の頭でタップ': 'Nhấn vào đầu mỗi dòng trong khi bài hát đang phát',
  'タップで同期': 'Đặt điểm chuyển cảnh',
  'Whisperで自動同期': 'Whisper tự căn lời',
@@ -938,8 +938,8 @@ UI = {'`前後の行と順番が入れ替わらないよう ${w.toFixed(2)} 秒�
                                                                                                                                           'chỉnh '
                                                                                                                                           'sửa '
                                                                                                                                           "video)'",
- "'。曲が読み込まれていないため音声なしです（「曲を読み込む」から読み込み直してください）'": "'. Không có bài hát nào được tải nên video không có âm thanh (tải "
-                                                  "lại qua “Chọn tệp”)'",
+ "'。曲が読み込まれていないため音声なしです（「ステップ1の曲を取り込む」から読み込み直してください）'": "'. Không có bài hát nào được tải nên video không có âm thanh (tải "
+                                                  "lại qua “Nạp nhạc Bước 1”)'",
  '`${from + 1}行目からタップで同期します（${J.fmtTime(t0)} から再生）`': '`Đồng bộ hóa bắt đầu từ dòng ${from + 1} (phát lại bắt đầu từ '
                                                       '${J.fmtTime(t0)})`',
  "ln.interlude ? '〔間奏〕' : ln.text} ` : '—'": "ln.interlude ? '[interlude]' : ln.text} ` : '—'",
@@ -952,10 +952,10 @@ UI = {'`前後の行と順番が入れ替わらないよう ${w.toFixed(2)} 秒�
                                                                                         'ngắn; [interlude 8] sẽ tạo '
                                                                                         'đoạn nhạc nền 8 giây (chỉ '
                                                                                         "hình nền và hiệu ứng).'",
- "title: '2. 曲を読み込む', text: 'mp3 などを読み込むと拍を検出して、カットの切り替わりを合わせます。曲がなくても作れます。「タップで同期」で行の頭を合わせることもできます。'": "title: '2. "
-                                                                                                        'Chọn tệp âm '
+ "title: '2. ステップ1の曲を取り込む', text: 'mp3 などを読み込むと拍を検出して、カットの切り替わりを合わせます。曲がなくても作れます。「タップで同期」で行の頭を合わせることもできます。'": "title: '2. "
+                                                                                                        'Nạp nhạc Bước 1 — '
                                                                                                         "thanh', text: "
-                                                                                                        "'Chọn tệp mp3 "
+                                                                                                        "'Nạp nhạc Bước 1 (mp3 "
                                                                                                         'hoặc tệp '
                                                                                                         'tương tự: '
                                                                                                         'LyricWave nhận '
@@ -1223,7 +1223,7 @@ UI.update({
     '書き出し中は切り替えられません': 'Đang xuất, không thể chuyển bài',
     '書き出し中は追加できません': 'Đang xuất, không thể thêm bài',
     '書き出し中は削除できません': 'Đang xuất, không thể xóa bài',
-    '曲が読み込まれていません — 「曲を読み込む」から読み込み直してください': 'Chưa nạp bài hát — hãy nạp lại từ "Nạp bài hát"',
+    '曲が読み込まれていません — 「ステップ1の曲を取り込む」から読み込み直してください': 'Chưa nạp bài hát — hãy nạp lại từ "Nạp nhạc Bước 1"',
     '（曲が読み込まれていません）': '(chưa nạp bài hát)',
     '音声ファイルが見つかりませんでした': 'Không tìm thấy tệp âm thanh',
     '`プレイリストに追加しました（${pl.items.length}曲）`': '`Đã thêm vào playlist (${pl.items.length} bài)`',
